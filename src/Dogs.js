@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import "./dogs.css";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./Dropdown";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,7 +95,12 @@ const Dogs = () => {
           </Button>
         </div>
         <div className={classes.root}>
-          <GridList cellHeight={300} className={classes.gridList} cols={4}>
+          <GridList
+            cellHeight={300}
+            className={classes.gridList}
+            cols={4}
+            spacing={12}
+          >
             {dog.map((dogs) => (
               <GridListTile cols={1}>
                 <img key={dogs.id} src={dogs} alt="a very good dog" />
