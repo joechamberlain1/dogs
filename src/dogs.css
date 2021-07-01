@@ -1,0 +1,18 @@
+.dogs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 2em;
+  border-radius: 1em;
+  margin: 5rem;
+  background: rgb(202, 202, 202);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+}
