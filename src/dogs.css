@@ -3,11 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
   padding: 2em;
   border-radius: 1em;
-  margin: 5rem;
   background: rgb(202, 202, 202);
+  text-align: center;
 }
 
 .button-container {

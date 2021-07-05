@@ -1,25 +1,30 @@
-import { Button, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  makeStyles,
+  ThemeProvider,
+  createMuiTheme,
+  Paper,
+  Switch,
+} from "@material-ui/core";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import "./dogs.css";
+import { green } from "@material-ui/core/colors";
 // import Dropdown from "./Dropdown";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    flexWrap: "noWrap",
-    justifyContent: "center",
-    alignItems: "center",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
     overflow: "hidden",
+    backgroundColor: theme.palette.background.paper,
   },
-
   gridList: {
-    width: 1080,
-    height: 305,
-    display: "flex",
-    justifyContent: "center",
+    width: 400,
+    height: 450,
   },
 }));
 
@@ -76,41 +81,65 @@ const Dogs = () => {
         console.error(error);
       });
   };
+  const [darkMode, setDarkMode] = useState(false);
+
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: darkMode ? "dark" : "light",
+    },
+  });
+
+  const greenTheme = createMuiTheme({
+    palette: {
+      primary: green,
+      secondary: green,
+    },
+  });
 
   const classes = useStyles();
-  return (
-    <>
-      <div className="dogs">
-        <h1>A Gallery of Good Dogs</h1>
 
-        <div className="button-container">
-          <Button variant="contained" onClick={() => tenDogs()}>
-            Fetch 10 Dogs
-          </Button>
-          <Button variant="contained" onClick={() => twentyDogs()}>
-            Fetch 20 Dogs
-          </Button>
-          <Button variant="contained" onClick={() => FiftyDogs()}>
-            Fetch 50 Dogs
-          </Button>
-        </div>
-        <div className={classes.root}>
-          <GridList
-            cellHeight={300}
-            className={classes.gridList}
-            cols={4}
-            spacing={12}
-          >
-            {dog.map((dogs) => (
-              <GridListTile cols={1}>
-                <img key={dogs.id} src={dogs} alt="a very good dog" />
-              </GridListTile>
-            ))}
-          </GridList>
-        </div>
-        {/* <Dropdown /> */}
+  return (
+    <ThemeProvider theme={darkMode ? darkTheme : greenTheme}>
+      <div className={classes.root}>
+        <Paper className="dogs">
+          <h1>A Gallery of Good Dogs</h1>
+          <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+          <p>{darkMode ? "change to light mode" : "change to dark mode"}</p>
+          <div className="button-container">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => tenDogs()}
+            >
+              Fetch 10 Dogs
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => twentyDogs()}
+            >
+              Fetch 20 Dogs
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => FiftyDogs()}
+            >
+              Fetch 50 Dogs
+            </Button>
+          </div>
+          <div className={classes.root}>
+            <GridList cellHeight={200} className={classes.gridList} cols={3}>
+              {dog.map((dogs) => (
+                <GridListTile key={dogs} cols={1}>
+                  <img src={dogs} alt="a very good dog" />
+                </GridListTile>
+              ))}
+            </GridList>
+          </div>
+        </Paper>
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 
