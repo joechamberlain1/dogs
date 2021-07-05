@@ -15,3 +15,8 @@
   align-items: center;
   margin: 2em;
 }
+
+.link a {
+  text-decoration: underline;
+  color: inherit;
+}

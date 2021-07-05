@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#242526",
   },
   gridList: {
     width: 400,
@@ -129,7 +129,7 @@ const Dogs = () => {
             </Button>
           </div>
           <div className={classes.root}>
-            <GridList cellHeight={200} className={classes.gridList} cols={3}>
+            <GridList cellHeight={200} className={classes.gridList} cols={2}>
               {dog.map((dogs) => (
                 <GridListTile key={dogs} cols={1}>
                   <img src={dogs} alt="a very good dog" />
@@ -137,6 +137,13 @@ const Dogs = () => {
               ))}
             </GridList>
           </div>
+          <p className="link">
+            {" "}
+            Api info can be found <a href="https://dog.ceo/dog-api/">here</a>
+          </p>
+          <p className="link">
+            Back to my <a href="https://webdevjoe.com/">portfolio</a>
+          </p>
         </Paper>
       </div>
     </ThemeProvider>
